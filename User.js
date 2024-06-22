@@ -1,3 +1,5 @@
+const Book = require('./Book');
+
 class User {
   /**
    * Creates a user
@@ -10,17 +12,26 @@ class User {
   }
 
   /**
-   * Borrow a book
-   * @param {Book} book - The book to borrow
+   * Peek a book
+   *
+   * @param {isbn} string - ISBN of the book to peek
+   *
+   * @returns {Book} The details of the book
    */
-  borrowBook(book) {
-    // Return false if the book has been borrowed or the user has borrowed 3 books
-    if (book.isBorrowed() || this.borrowedBooks.length >= 3) {
-      return false;
-    }
-    this.borrowedBooks.push(book);
-    book.borrowed = true;
-    return true;
+  peekBook(isbn) {
+    const book = this.books.find((book) => book.isbn === isbn);
+    return book;
+  }
+
+  /**
+   * Borrow a book
+   *
+   * @param {string} isbn - The book to return
+   */
+  returnBook(isbn) {
+    this.borrowedBooks = this.borrowedBooks.filter(
+      (book) => book.isbn !== isbn
+    );
   }
 }
 

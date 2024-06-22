@@ -30,7 +30,9 @@ class Library {
     const book = this.books.find((book) => book.isbn === isbn);
 
     if (user && book) {
-      return user.borrowBook(book);
+      book.borrowed = true;
+      user.borrowedBooks.push(book);
+      return true;
     }
     return false;
   }
@@ -40,15 +42,15 @@ class Library {
    * @param {User} user - The user returning the book
    * @param {string} isbn - The ISBN of the book to return
    * */
-  returnBook(user, isbn) {
-    const book = this.books.find((book) => book.isbn === isbn);
-    if (book) {
-      user.borrowedBooks = user.borrowedBooks.filter(
-        (borrowedBook) => borrowedBook.isbn !== isbn
-      );
-      book.borrowed = false;
-    }
-  }
+  // returnBook(user, isbn) {
+  //   const book = this.books.find((book) => book.isbn === isbn);
+  //   if (book) {
+  //     user.borrowedBooks = user.borrowedBooks.filter(
+  //       (borrowedBook) => borrowedBook.isbn !== isbn
+  //     );
+  //     book.borrowed = false;
+  //   }
+  // }
 }
 
 module.exports = Library;

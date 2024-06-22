@@ -15,6 +15,7 @@ class Book {
 
   /**
    * Check if the book is borrowed
+   *
    * @returns {boolean} - True if the book is borrowed, false otherwise
    */
   isBorrowed() {
